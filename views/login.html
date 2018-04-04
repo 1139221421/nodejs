@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆</title>
+    <style>
+        body {
+            background: url(/img/login-bg.jpg);
+        }
+
+        .wrapper {
+            width: 400px;
+            position: absolute;
+            right: 185px;
+        }
+
+        .login-inner {
+            background-color: #fff;
+            padding: 0 40px 80px 40px;
+            overflow: hidden;
+            border-radius: 5px;
+            margin-top: 200px;
+        }
+
+        .login-title {
+            font-size: 18px;
+            margin: 42px 0;
+            text-align: center;
+            line-height: 1em;
+        }
+
+        .login-devider {
+            border-bottom: 1px solid #e0e7ef;
+            margin-bottom: 50px;
+        }
+
+        .login-btn {
+            height: 50px;
+            line-height: 50px;
+            background-color: #fb023f;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background-color: #e5053e;
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 42px;
+        }
+
+        .userName {
+            margin-bottom: 24px;
+        }
+
+        .password {
+            margin-bottom: 50px;
+        }
+
+        input {
+            height: 50px;
+            width: 305px;
+            padding-left: 10px;
+            background-color: #f5f9fd;
+            line-height: 50px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="wrapper fr">
+    <div id="app" class="login-inner">
+        <p class="login-title com-row">用户登录</p>
+        <div class="login-devider"></div>
+        <div class="com-row">
+            <input type="text" class="userName" v-model="userName" placeholder="请输入用户名">
+        </div>
+        <div class="com-row">
+            <input type="password" class="password" v-model="password" placeholder="请输入密码">
+        </div>
+        <div class="login-btn" v-on:click="login">登录</div>
+    </div>
+</div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        methods: {
+            login: function () {
+                axios.post('/login.do', {
+                    userName: this.userName,
+                    password: this.password
+                })
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        },
+        data: {
+            userName: "",
+            password: ""
+        }
+    });
+
+</script>
+</html>

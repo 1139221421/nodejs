@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<form action="/adduser.do" method="POST">
+    用户名: <input type="text" name="userName"> <br>
+
+    密码: <input type="password" name="password">
+    <input type="submit" value="添加">
+</form>
+
+<h3>文件上传：</h3>
+选择一个文件上传: <br/>
+<form action="/upload.do" method="post" enctype="multipart/form-data">
+    <input type="file" name="image" size="50"/>
+    <br/>
+    <input type="submit" value="上传文件"/>
+</form>
+
+<div id="app">
+    <p>{{ message }}</p>
+</div>
+</body>
+<script src="/js/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello!'
+        }
+    })
+</script>
+</html>
